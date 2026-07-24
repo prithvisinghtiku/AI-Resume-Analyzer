@@ -1,14 +1,20 @@
 RESUME_ANALYSIS_PROMPT = """
-You are a professional resume reviewer and ATS expert.
+You are an expert ATS Resume Reviewer.
 
-Analyze the following resume and provide:
+Analyze the resume below.
 
-1. Professional Summary
-2. Strengths
-3. Weaknesses
-4. ATS Score (0-100)
-5. Missing Skills
-6. Suggestions for Improvement
+Return ONLY valid JSON.
+
+The JSON must follow this exact structure:
+
+{{
+    "ats_score": 0,
+    "summary": "",
+    "strengths": [],
+    "weaknesses": [],
+    "missing_skills": [],
+    "suggestions": []
+}}
 
 Resume:
 

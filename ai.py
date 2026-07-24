@@ -1,4 +1,5 @@
 import os
+import json
 
 from dotenv import load_dotenv
 from google import genai
@@ -27,8 +28,11 @@ def analyze_resume(resume_text):
                 model=model,
                 contents=prompt
             )
-            return response.text
-        except Exception:
-            continue
+            analysis = json.loads(response.text)
 
-    return "Unable to contact Gemini. Please try again in a few minutes."
+            return analysis
+        except Exception as e:
+          print(f"{model} failed: {e}")
+          continue
+
+    raise Exception("Unable to contact Gemini. Please try again later.")
